@@ -4,11 +4,10 @@ import hibernate.dao.MovieDao;
 import hibernate.lib.Dao;
 import hibernate.model.Movie;
 import hibernate.util.HibernateUtil;
+import java.util.List;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import javax.persistence.criteria.CriteriaQuery;
-import java.util.List;
 
 @Dao
 public class MovieDaoImpl implements MovieDao {

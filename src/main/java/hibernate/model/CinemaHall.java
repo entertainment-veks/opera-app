@@ -33,19 +33,24 @@ public class CinemaHall {
 
     @Override
     public String toString() {
-        return "CinemaHall{" +
-                "id=" + id +
-                ", capacity=" + capacity +
-                ", description='" + description + '\'' +
-                '}';
+        return "CinemaHall{"
+                + "id=" + id
+                + ", capacity=" + capacity
+                + ", description='"
+                + description + '\'' + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CinemaHall that = (CinemaHall) o;
-        return capacity == that.capacity && Objects.equals(id, that.id) && Objects.equals(description, that.description);
+        return capacity == that.capacity && Objects.equals(id, that.id)
+                && Objects.equals(description, that.description);
     }
 
     @Override
