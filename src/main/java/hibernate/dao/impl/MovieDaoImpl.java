@@ -45,8 +45,4 @@ public class MovieDaoImpl implements MovieDao {
             throw new CustomDaoException("Can't get all", e);
         }
     }
-
-    @Override
-    public void delete(Movie movie) {
-    }
 }

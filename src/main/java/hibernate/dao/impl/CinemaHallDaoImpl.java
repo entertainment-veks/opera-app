@@ -6,9 +6,9 @@ import hibernate.lib.Dao;
 import hibernate.model.CinemaHall;
 import hibernate.util.HibernateUtil;
 import java.util.List;
-import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 @Dao
 public class CinemaHallDaoImpl implements CinemaHallDao {
@@ -37,12 +37,10 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
     @Override
     public List<CinemaHall> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            CriteriaQuery<CinemaHall> criteriaQuery = session.getCriteriaBuilder()
-                    .createQuery(CinemaHall.class);
-            criteriaQuery.from(CinemaHall.class);
-            return session.createQuery(criteriaQuery).getResultList();
+            Query<CinemaHall> query = session.createQuery("from movie_session", CinemaHall.class);
+            return query.getResultList();
         } catch (Exception e) {
-            throw new CustomDaoException("Can't get all cinema halls", e);
+            throw new RuntimeException("Can't get all cinema halls", e);
         }
     }
 }
