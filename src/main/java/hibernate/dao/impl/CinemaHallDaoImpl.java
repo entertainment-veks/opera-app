@@ -1,9 +1,9 @@
 package hibernate.dao.impl;
 
-import hibernate.dao.MovieDao;
+import hibernate.dao.CinemaHallDao;
 import hibernate.exception.CustomDaoException;
 import hibernate.lib.Dao;
-import hibernate.model.Movie;
+import hibernate.model.CinemaHall;
 import hibernate.util.HibernateUtil;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
@@ -11,22 +11,22 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 @Dao
-public class MovieDaoImpl implements MovieDao {
+public class CinemaHallDaoImpl implements CinemaHallDao {
     @Override
-    public Movie add(Movie movie) {
+    public CinemaHall add(CinemaHall cinemaHall) {
         Transaction transaction = null;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            session.save(movie);
+            session.save(cinemaHall);
             transaction.commit();
-            return movie;
+            return cinemaHall;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new CustomDaoException("Can't insert Movie entity " + movie, e);
+            throw new CustomDaoException("Can't insert cinema hall entity " + cinemaHall, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -35,24 +35,14 @@ public class MovieDaoImpl implements MovieDao {
     }
 
     @Override
-    public List<Movie> getAll() {
+    public List<CinemaHall> getAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            CriteriaQuery<Movie> criteriaQuery = session.getCriteriaBuilder()
-                    .createQuery(Movie.class);
-            criteriaQuery.from(Movie.class);
+            CriteriaQuery<CinemaHall> criteriaQuery = session.getCriteriaBuilder()
+                    .createQuery(CinemaHall.class);
+            criteriaQuery.from(CinemaHall.class);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            throw new CustomDaoException("Can't get all", e);
+            throw new CustomDaoException("Can't get all cinema halls", e);
         }
-    }
-
-    @Override
-    public void delete(Movie movie) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction transaction = session.beginTransaction();
-            session.remove(movie);
-            transaction.commit();
-        }
-        System.out.println(String.format("Movie with id %s should be removed", movie.getId()));
     }
 }
