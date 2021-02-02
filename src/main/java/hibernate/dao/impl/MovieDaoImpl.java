@@ -48,11 +48,5 @@ public class MovieDaoImpl implements MovieDao {
 
     @Override
     public void delete(Movie movie) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction transaction = session.beginTransaction();
-            session.remove(movie);
-            transaction.commit();
-        }
-        System.out.println(String.format("Movie with id %s should be removed", movie.getId()));
     }
 }
