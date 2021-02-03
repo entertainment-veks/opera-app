@@ -17,15 +17,11 @@ public class AuthentificationServiceImpl implements AuthenticationService {
     @Override
     public User login(String email, String password) throws AuthenticationException {
         Optional<User> dirty = userService.findByEmail(email);
-        if (dirty.isEmpty()) {
-            throw new AuthenticationException("User doesn't exist");
+        if (dirty.isPresent() && dirty.get().getPassword()
+                .equals(SecurityUtil.hashPassword(password, dirty.get().getSalt()))) {
+            return dirty.get();
         }
-        User current = dirty.get();
-        String hashedInput = SecurityUtil.hashPassword(password, current.getSalt());
-        if (!current.getPassword().equals(hashedInput)) {
-            throw new AuthenticationException("passwords don't match");
-        }
-        return current;
+        throw new AuthenticationException("User doesn't exist");
     }
 
     @Override
