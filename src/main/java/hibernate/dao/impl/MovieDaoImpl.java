@@ -1,7 +1,7 @@
 package hibernate.dao.impl;
 
 import hibernate.dao.MovieDao;
-import hibernate.exception.CustomDaoException;
+import hibernate.exception.DataProcessingException;
 import hibernate.lib.Dao;
 import hibernate.model.Movie;
 import hibernate.util.HibernateUtil;
@@ -26,7 +26,7 @@ public class MovieDaoImpl implements MovieDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new CustomDaoException("Can't insert Movie entity " + movie, e);
+            throw new DataProcessingException("Can't insert Movie entity " + movie, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -42,7 +42,7 @@ public class MovieDaoImpl implements MovieDao {
             criteriaQuery.from(Movie.class);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            throw new CustomDaoException("Can't get all", e);
+            throw new DataProcessingException("Can't get all", e);
         }
     }
 }
