@@ -1,7 +1,7 @@
 package hibernate.dao.impl;
 
 import hibernate.dao.MovieSessionDao;
-import hibernate.exception.CustomDaoException;
+import hibernate.exception.DataProcessingException;
 import hibernate.lib.Dao;
 import hibernate.model.MovieSession;
 import hibernate.util.HibernateUtil;
@@ -24,7 +24,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             query.setParameter("date", date.toString());
             return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't find movie session by params: "
+            throw new DataProcessingException("Can't find movie session by params: "
                     + "\n" + movieId + "\n" + date.toString(), e);
         }
     }
@@ -43,7 +43,8 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new CustomDaoException("Can't insert movie session entity " + movieSession, e);
+            throw new DataProcessingException("Can't insert movie session entity "
+                    + movieSession, e);
         } finally {
             if (session != null) {
                 session.close();
