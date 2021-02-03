@@ -21,7 +21,7 @@ public class AuthentificationServiceImpl implements AuthenticationService {
                 .equals(SecurityUtil.hashPassword(password, dirty.get().getSalt()))) {
             return dirty.get();
         }
-        throw new AuthenticationException("User doesn't exist");
+        throw new AuthenticationException("Wrong email or password");
     }
 
     @Override
