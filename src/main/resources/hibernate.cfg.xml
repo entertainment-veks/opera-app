@@ -19,5 +19,6 @@
         <mapping class="hibernate.model.User"/>
         <mapping class="hibernate.model.Ticket"/>
         <mapping class="hibernate.model.ShoppingCart"/>
+        <mapping class="hibernate.model.Order"/>
     </session-factory>
 </hibernate-configuration>

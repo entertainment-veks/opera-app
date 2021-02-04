@@ -9,6 +9,7 @@ import hibernate.service.AuthenticationService;
 import hibernate.service.CinemaHallService;
 import hibernate.service.MovieService;
 import hibernate.service.MovieSessionService;
+import hibernate.service.OrderService;
 import hibernate.service.ShoppingCartService;
 import java.time.LocalDateTime;
 
@@ -71,7 +72,11 @@ public class Main {
 
         shoppingCartService.addSession(movieSessionLotr, bob);
         System.out.println(shoppingCartService.getByUser(bob));
-        shoppingCartService.clear(shoppingCartService.getByUser(bob));
+
+        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
+
+        orderService.completeOrder(shoppingCartService.getByUser(bob));
+        System.out.println(orderService.getOrdersHistory(bob));
         System.out.println(shoppingCartService.getByUser(bob));
     }
 }
