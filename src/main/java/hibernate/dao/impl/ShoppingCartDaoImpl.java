@@ -8,7 +8,6 @@ import hibernate.model.User;
 import hibernate.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 @Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
@@ -38,10 +37,10 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart getByUser(User user) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from shopping_cart s"
-                    + " JOIN ticket t"
-                    + " WHERE s.user.id = :userId", ShoppingCart.class)
-                    .setParameter("userId", user.getId())
+            return session.createQuery("from ShoppingCart s "
+                    + "LEFT JOIN FETCH s.tickets "
+                    + "WHERE s.user = :user ", ShoppingCart.class)
+                    .setParameter("user", user)
                     .getSingleResult();
         } catch (Exception e) {
             throw new DataProcessingException("Can't find shopping cart by user: " + user, e);
