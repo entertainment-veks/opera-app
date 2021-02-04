@@ -70,11 +70,8 @@ public class Main {
                 (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
         shoppingCartService.addSession(movieSessionLotr, bob);
-
         System.out.println(shoppingCartService.getByUser(bob));
-
         shoppingCartService.clear(shoppingCartService.getByUser(bob));
-
         System.out.println(shoppingCartService.getByUser(bob));
     }
 }

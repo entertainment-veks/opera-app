@@ -14,7 +14,6 @@ import hibernate.service.ShoppingCartService;
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
     private ShoppingCartDao shoppingCartDao;
-
     @Inject
     private TicketDao ticketDao;
 

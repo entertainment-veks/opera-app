@@ -2,21 +2,17 @@ package hibernate.model;
 
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity(name = "shopping_cart")
 public class ShoppingCart {
     @Id
     private Long id;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     private List<Ticket> tickets;
     @OneToOne
     @MapsId
+    @JoinColumn(name = "id")
     private User user;
 
     public Long getId() {
