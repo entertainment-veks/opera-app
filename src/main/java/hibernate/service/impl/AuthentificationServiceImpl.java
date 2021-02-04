@@ -5,6 +5,7 @@ import hibernate.lib.Inject;
 import hibernate.lib.Service;
 import hibernate.model.User;
 import hibernate.service.AuthenticationService;
+import hibernate.service.ShoppingCartService;
 import hibernate.service.UserService;
 import hibernate.util.SecurityUtil;
 import java.util.Optional;
@@ -13,6 +14,9 @@ import java.util.Optional;
 public class AuthentificationServiceImpl implements AuthenticationService {
     @Inject
     private UserService userService;
+
+    @Inject
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public User login(String email, String password) throws AuthenticationException {
@@ -29,6 +33,8 @@ public class AuthentificationServiceImpl implements AuthenticationService {
         User current = new User();
         current.setEmail(email);
         current.setPassword(password);
-        return userService.add(current);
+        current = userService.add(current);
+        shoppingCartService.registerNewShoppingCart(current);
+        return current;
     }
 }
