@@ -4,10 +4,12 @@ import hibernate.lib.Injector;
 import hibernate.model.CinemaHall;
 import hibernate.model.Movie;
 import hibernate.model.MovieSession;
+import hibernate.model.User;
+import hibernate.service.AuthenticationService;
 import hibernate.service.CinemaHallService;
 import hibernate.service.MovieService;
 import hibernate.service.MovieSessionService;
-import java.time.LocalDate;
+import hibernate.service.ShoppingCartService;
 import java.time.LocalDateTime;
 
 public class Main {
@@ -27,8 +29,6 @@ public class Main {
 
         cinemaHallService.add(cinemaHall45);
         cinemaHallService.add(cinemaHall60);
-
-        cinemaHallService.getAll().forEach(System.out::println);
 
         Movie movie1 = new Movie();
         movie1.setTitle("LoTR");
@@ -60,6 +60,18 @@ public class Main {
         movieSessionService.add(movieSessionLotr);
         movieSessionService.add(movieSessionCars);
 
-        movieSessionService.findAvailableSessions(id, LocalDate.now()).forEach(System.out::println);
+        AuthenticationService authenticationService =
+                (AuthenticationService) injector.getInstance(AuthenticationService.class);
+
+        User bob = authenticationService.register("bob", "pass");
+        System.out.println(bob);
+
+        ShoppingCartService shoppingCartService =
+                (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+
+        shoppingCartService.addSession(movieSessionLotr, bob);
+        System.out.println(shoppingCartService.getByUser(bob));
+        shoppingCartService.clear(shoppingCartService.getByUser(bob));
+        System.out.println(shoppingCartService.getByUser(bob));
     }
 }
