@@ -1,8 +1,6 @@
 package hibernate.service.impl;
 
 import hibernate.dao.OrderDao;
-import hibernate.lib.Inject;
-import hibernate.lib.Service;
 import hibernate.model.Order;
 import hibernate.model.ShoppingCart;
 import hibernate.model.User;
@@ -11,13 +9,19 @@ import hibernate.service.ShoppingCartService;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    @Inject
     private OrderDao orderDao;
-    @Inject
     private ShoppingCartService shoppingCartService;
+
+    @Autowired
+    public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService) {
+        this.orderDao = orderDao;
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @Override
     public Order completeOrder(ShoppingCart shoppingCart) {

@@ -2,20 +2,24 @@ package hibernate.service.impl;
 
 import hibernate.dao.ShoppingCartDao;
 import hibernate.dao.TicketDao;
-import hibernate.lib.Inject;
-import hibernate.lib.Service;
 import hibernate.model.MovieSession;
 import hibernate.model.ShoppingCart;
 import hibernate.model.Ticket;
 import hibernate.model.User;
 import hibernate.service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-    @Inject
     private ShoppingCartDao shoppingCartDao;
-    @Inject
     private TicketDao ticketDao;
+
+    @Autowired
+    public ShoppingCartServiceImpl(ShoppingCartDao shoppingCartDao, TicketDao ticketDao) {
+        this.shoppingCartDao = shoppingCartDao;
+        this.ticketDao = ticketDao;
+    }
 
     @Override
     public void addSession(MovieSession movieSession, User user) {
