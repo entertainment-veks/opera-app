@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private MovieSessionService movieSessionService;
     private MovieSessionMapper movieSessionMapper;
@@ -31,13 +33,13 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @PostMapping("/movie-sessions")
+    @PostMapping
     public void saveMovieSession(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession current = movieSessionMapper.parseFromDto(movieSessionRequestDto);
         movieSessionService.add(current);
     }
 
-    @GetMapping("/movie-sessions/available")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> getAllMovieSessions(@RequestParam Long movieId,
              @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
@@ -45,7 +47,7 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/movie-sessions/{id}")
+    @PutMapping("/{id}")
     public void updateMovieSession(@PathVariable Long id,
                                    @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.parseFromDto(movieSessionRequestDto);
@@ -53,7 +55,7 @@ public class MovieSessionController {
         movieSessionService.update(movieSession);
     }
 
-    @DeleteMapping("/movie-sessions/{id}")
+    @DeleteMapping("/{id}")
     public void deleteMovieSession(@PathVariable Long id) {
         movieSessionService.delete(id);
     }

@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/movies")
 public class MovieController {
     private MovieService movieService;
     private MovieMapper movieMapper;
@@ -24,13 +26,13 @@ public class MovieController {
         this.movieMapper = movieMapper;
     }
 
-    @PostMapping("/movies")
+    @PostMapping
     public void saveMovie(@RequestBody MovieRequestDto movieRequestDto) {
         Movie current = movieMapper.parseFromDto(movieRequestDto);
         movieService.add(current);
     }
 
-    @GetMapping("/movies")
+    @GetMapping
     public List<MovieResponseDto> getAllMovies() {
         return movieService.getAll().stream()
                 .map(movieMapper::parseToDto)
