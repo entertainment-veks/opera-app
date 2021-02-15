@@ -1,16 +1,20 @@
 package hibernate.service.impl;
 
 import hibernate.dao.CinemaHallDao;
-import hibernate.lib.Inject;
-import hibernate.lib.Service;
 import hibernate.model.CinemaHall;
 import hibernate.service.CinemaHallService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CinemaHallServiceImpl implements CinemaHallService {
-    @Inject
     private CinemaHallDao cinemaHallDao;
+
+    @Autowired
+    public CinemaHallServiceImpl(CinemaHallDao cinemaHallDao) {
+        this.cinemaHallDao = cinemaHallDao;
+    }
 
     @Override
     public CinemaHall add(CinemaHall cinemaHall) {
