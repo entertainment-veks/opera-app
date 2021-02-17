@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shopping-carts")
 public class ShoppingCartController {
-    private ShoppingCartService shoppingCartService;
-    private ShoppingCartMapper shoppingCartMapper;
-    private MovieSessionService movieSessionService;
-    private UserService userService;
+    private final ShoppingCartService shoppingCartService;
+    private final ShoppingCartMapper shoppingCartMapper;
+    private final MovieSessionService movieSessionService;
+    private final UserService userService;
 
     @Autowired
     public ShoppingCartController(ShoppingCartService shoppingCartService,

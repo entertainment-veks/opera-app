@@ -12,13 +12,14 @@ import org.springframework.stereotype.Component;
 public class OrderMapperImpl implements OrderMapper {
     @Override
     public OrderResponseDto parseToDto(Order order) {
-        OrderResponseDto current = new OrderResponseDto();
-        current.setId(order.getId());
+        OrderResponseDto dto = new OrderResponseDto();
+        dto.setId(order.getId());
         List<Long> tickets = order.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        current.setTicketIds(tickets);
-        current.setOrderDate(String.valueOf(order.getOrderDate()));
-        return current;
+        dto.setTicketIds(tickets);
+        dto.setOrderDate(order.getOrderDate().toString());
+        dto.setUserId(order.getUser().getId());
+        return dto;
     }
 }

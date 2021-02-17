@@ -6,7 +6,6 @@ import hibernate.model.MovieSession;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

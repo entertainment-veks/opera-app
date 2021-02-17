@@ -6,7 +6,7 @@ public class OrderResponseDto {
     private Long id;
     private List<Long> ticketIds;
     private String orderDate;
-    private Long user;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class OrderResponseDto {
         this.orderDate = orderDate;
     }
 
-    public Long getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(Long user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
