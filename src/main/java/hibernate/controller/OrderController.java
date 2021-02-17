@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,12 +30,12 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public void completeOrder(@RequestBody Long userId) {
+    public void completeOrder(@RequestParam Long userId) {
         orderService.completeOrder(shoppingCartService.getByUser(userService.get(userId)));
     }
 
     @GetMapping
-    public List<OrderResponseDto> getOrdersHistory(@RequestBody Long userId) {
+    public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
         return orderService.getOrdersHistory(userService.get(userId)).stream()
                 .map(orderMapper::parseToDto)
                 .collect(Collectors.toList());

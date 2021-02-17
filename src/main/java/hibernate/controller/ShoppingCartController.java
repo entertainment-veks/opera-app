@@ -8,8 +8,8 @@ import hibernate.service.mapper.ShoppingCartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,13 +32,13 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/movie-sessions")
-    public void addMovieSession(@RequestBody Long userId, @RequestBody Long movieSessionId) {
+    public void addMovieSession(@RequestParam Long userId, @RequestParam Long movieSessionId) {
         shoppingCartService
                 .addSession(movieSessionService.get(movieSessionId), userService.get(userId));
     }
 
     @GetMapping("/by-user")
-    public ShoppingCartResponseDto getShoppingCartByUser(@RequestBody Long userId) {
+    public ShoppingCartResponseDto getShoppingCartByUser(@RequestParam Long userId) {
         return shoppingCartMapper
                 .parseToDto(shoppingCartService.getByUser(userService.get(userId)));
     }

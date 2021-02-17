@@ -17,7 +17,7 @@ public class ShoppingCartMapperImpl implements ShoppingCartMapper {
         List<Long> tickets = shoppingCart.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        current.setTickets(tickets);
+        current.setTicketIds(tickets);
         return current;
     }
 }

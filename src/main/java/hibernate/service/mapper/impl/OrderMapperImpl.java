@@ -17,7 +17,7 @@ public class OrderMapperImpl implements OrderMapper {
         List<Long> tickets = order.getTickets().stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-        current.setTickets(tickets);
+        current.setTicketIds(tickets);
         current.setOrderDate(String.valueOf(order.getOrderDate()));
         return current;
     }

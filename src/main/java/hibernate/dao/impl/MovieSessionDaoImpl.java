@@ -5,7 +5,6 @@ import hibernate.exception.DataProcessingException;
 import hibernate.model.MovieSession;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -62,12 +61,9 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public Optional<MovieSession> get(Long id) {
+    public MovieSession get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            Query<MovieSession> query = session.createQuery("from MovieSession"
-                    + " WHERE id = :id", MovieSession.class);
-            query.setParameter("id", id);
-            return query.uniqueResultOptional();
+            return session.get(MovieSession.class, id);
         } catch (Exception e) {
             throw new DataProcessingException("Can't get movie session by id: " + id, e);
         }
