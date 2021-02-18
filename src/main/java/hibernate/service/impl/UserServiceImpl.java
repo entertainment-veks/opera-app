@@ -1,33 +1,33 @@
 package hibernate.service.impl;
 
+import hibernate.config.SecurityConfig;
 import hibernate.dao.UserDao;
 import hibernate.model.User;
 import hibernate.service.UserService;
-import hibernate.util.SecurityUtil;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
+    private SecurityConfig securityConfig;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, SecurityConfig securityConfig) {
         this.userDao = userDao;
+        this.securityConfig = securityConfig;
     }
 
     @Override
     public User add(User user) {
-        user.setSalt(SecurityUtil.getSalt());
-        String hashedPassword = SecurityUtil.hashPassword(user.getPassword(), user.getSalt());
+        String hashedPassword = securityConfig.getEncoder().encode(user.getPassword());
         user.setPassword(hashedPassword);
         return userDao.add(user);
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email).get();
     }
 
     @Override

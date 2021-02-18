@@ -5,6 +5,7 @@ import hibernate.model.dto.CinemaHallRequestDto;
 import hibernate.model.dto.CinemaHallResponseDto;
 import hibernate.service.CinemaHallService;
 import hibernate.service.mapper.CinemaHallMapper;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class CinemaHallController {
     }
 
     @PostMapping
-    public void saveCinemaHall(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
+    public void saveCinemaHall(@RequestBody @Valid CinemaHallRequestDto cinemaHallRequestDto) {
         CinemaHall current = cinemaHallMapper.parseFromDto(cinemaHallRequestDto);
         cinemaHallService.add(current);
     }

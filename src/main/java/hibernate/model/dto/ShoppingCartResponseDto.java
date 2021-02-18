@@ -1,8 +1,10 @@
 package hibernate.model.dto;
 
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public class ShoppingCartResponseDto {
+    @NotNull
     private Long id;
     private List<Long> ticketIds;
 

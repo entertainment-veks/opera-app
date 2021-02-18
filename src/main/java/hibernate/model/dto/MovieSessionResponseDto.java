@@ -1,12 +1,18 @@
 package hibernate.model.dto;
 
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {
+    @NotNull
     private Long movieSessionId;
+    @NotNull
     private LocalDateTime showTime;
+    @NotNull
     private String movieTitle;
+    @NotNull
     private Long movieId;
+    @NotNull
     private Long cinemaHallId;
 
     public Long getMovieSessionId() {

@@ -1,7 +1,13 @@
 package hibernate.model.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class MovieRequestDto {
+    @NotNull
     private String title;
+    @NotNull
+    @Size(min = 5)
     private String description;
 
     public String getTitle() {

@@ -5,6 +5,7 @@ import hibernate.model.dto.MovieSessionRequestDto;
 import hibernate.model.dto.MovieSessionResponseDto;
 import hibernate.service.MovieSessionService;
 import hibernate.service.mapper.MovieSessionMapper;
+import jakarta.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +35,8 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public void saveMovieSession(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+    public void saveMovieSession(@RequestBody @Valid
+                                             MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession current = movieSessionMapper.parseFromDto(movieSessionRequestDto);
         movieSessionService.add(current);
     }
@@ -49,7 +51,8 @@ public class MovieSessionController {
 
     @PutMapping("/{id}")
     public void updateMovieSession(@PathVariable Long id,
-                                   @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+                                   @RequestBody @Valid
+                                           MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.parseFromDto(movieSessionRequestDto);
         movieSession.setId(id);
         movieSessionService.update(movieSession);

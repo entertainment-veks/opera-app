@@ -1,8 +1,14 @@
 package hibernate.model.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class CinemaHallResponseDto {
+    @NotNull
     private Long id;
     private int capacity;
+    @NotNull
+    @Size(min = 10)
     private String description;
 
     public Long getId() {
