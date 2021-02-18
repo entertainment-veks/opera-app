@@ -1,26 +1,26 @@
 package hibernate.service.impl;
 
-import hibernate.config.SecurityConfig;
 import hibernate.dao.UserDao;
 import hibernate.model.User;
 import hibernate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
-    private SecurityConfig securityConfig;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, SecurityConfig securityConfig) {
+    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
-        this.securityConfig = securityConfig;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public User add(User user) {
-        String hashedPassword = securityConfig.getEncoder().encode(user.getPassword());
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
         return userDao.add(user);
     }

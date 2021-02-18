@@ -1,12 +1,7 @@
 package hibernate.model.dto;
 
-import hibernate.lib.annotation.EmailValidator;
-import jakarta.validation.constraints.NotNull;
-
 public class UserResponseDto {
-    @NotNull
     private Long id;
-    @EmailValidator
     private String email;
 
     public Long getId() {

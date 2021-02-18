@@ -1,15 +1,11 @@
 package hibernate.model.dto;
 
-import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public class OrderResponseDto {
-    @NotNull
     private Long id;
     private List<Long> ticketIds;
-    @NotNull
     private String orderDate;
-    @NotNull
     private Long userId;
 
     public Long getId() {
