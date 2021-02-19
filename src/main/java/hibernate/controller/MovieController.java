@@ -5,6 +5,7 @@ import hibernate.model.dto.MovieRequestDto;
 import hibernate.model.dto.MovieResponseDto;
 import hibernate.service.MovieService;
 import hibernate.service.mapper.MovieMapper;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class MovieController {
     }
 
     @PostMapping
-    public void saveMovie(@RequestBody MovieRequestDto movieRequestDto) {
+    public void saveMovie(@RequestBody @Valid MovieRequestDto movieRequestDto) {
         Movie current = movieMapper.parseFromDto(movieRequestDto);
         movieService.add(current);
     }

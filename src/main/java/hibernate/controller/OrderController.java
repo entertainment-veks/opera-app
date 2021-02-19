@@ -8,10 +8,11 @@ import hibernate.service.mapper.OrderMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,13 +33,17 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public void completeOrder(@RequestParam Long userId) {
-        orderService.completeOrder(shoppingCartService.getByUser(userService.get(userId)));
+    public void completeOrder(Authentication authentication) {
+        UserDetails details = (UserDetails) authentication.getPrincipal();
+        String email = details.getUsername();
+        orderService.completeOrder(shoppingCartService.getByUser(userService.findByEmail(email)));
     }
 
     @GetMapping
-    public List<OrderResponseDto> getOrdersHistory(@RequestParam Long userId) {
-        return orderService.getOrdersHistory(userService.get(userId)).stream()
+    public List<OrderResponseDto> getOrdersHistory(Authentication authentication) {
+        UserDetails details = (UserDetails) authentication.getPrincipal();
+        String email = details.getUsername();
+        return orderService.getOrdersHistory(userService.findByEmail(email)).stream()
                 .map(orderMapper::parseToDto)
                 .collect(Collectors.toList());
     }
