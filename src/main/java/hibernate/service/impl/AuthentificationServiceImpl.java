@@ -5,10 +5,9 @@ import hibernate.service.AuthenticationService;
 import hibernate.service.RoleService;
 import hibernate.service.ShoppingCartService;
 import hibernate.service.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AuthentificationServiceImpl implements AuthenticationService {

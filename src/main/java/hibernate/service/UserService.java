@@ -1,8 +1,7 @@
 package hibernate.service;
 
-import java.util.Optional;
 import hibernate.model.User;
-
+import java.util.Optional;
 
 public interface UserService {
     User add(User user);

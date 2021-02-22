@@ -1,28 +1,23 @@
 package hibernate.controller;
 
-import hibernate.model.Movie;
-import hibernate.model.Role;
-import hibernate.model.Role.RoleName;
-import hibernate.model.User;
-import hibernate.model.dto.MovieRequestDto;
-import hibernate.service.RoleService;
-import hibernate.service.UserService;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
-
 import static hibernate.model.Role.RoleName.ADMIN;
 import static hibernate.model.Role.RoleName.USER;
+
+import hibernate.model.Role;
+import hibernate.model.User;
+import hibernate.service.RoleService;
+import hibernate.service.UserService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/inject-data")
 public class InjectDataController {
-    UserService userService;
-    RoleService roleService;
+    private UserService userService;
+    private RoleService roleService;
 
     @Autowired
     public InjectDataController(UserService userService, RoleService roleService) {
