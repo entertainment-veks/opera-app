@@ -7,18 +7,18 @@ import hibernate.model.Role;
 import hibernate.model.User;
 import hibernate.service.RoleService;
 import hibernate.service.UserService;
-import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Component
-public class InjectDataController {
+public class DataInitializer {
     private UserService userService;
     private RoleService roleService;
 
     @Autowired
-    public InjectDataController(UserService userService, RoleService roleService) {
+    public DataInitializer(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -28,19 +28,19 @@ public class InjectDataController {
         User coolBob = new User();
         coolBob.setEmail("im_cool_boy@gmail.com");
         coolBob.setPassword("im_the_best");
-        Role coolBobsRole = new Role();
-        coolBobsRole.setRoleName(ADMIN);
-        roleService.add(coolBobsRole);
-        coolBob.setRoles(List.of(coolBobsRole));
+        Role adminRole = new Role();
+        adminRole.setRoleName(ADMIN);
+        roleService.add(adminRole);
+        coolBob.setRoles(Set.of(adminRole));
         userService.add(coolBob);
 
         User commonAlice = new User();
         commonAlice.setEmail("alice_bobson@gmail.com");
         commonAlice.setPassword("alicok");
-        Role commonAlicesRole = new Role();
-        commonAlicesRole.setRoleName(USER);
-        roleService.add(commonAlicesRole);
-        commonAlice.setRoles(List.of(commonAlicesRole));
+        Role userRole = new Role();
+        userRole.setRoleName(USER);
+        roleService.add(userRole);
+        commonAlice.setRoles(Set.of(userRole));
         userService.add(commonAlice);
     }
 }
