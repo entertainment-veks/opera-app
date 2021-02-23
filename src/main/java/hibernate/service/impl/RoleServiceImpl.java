@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    private final RoleDao roleDao;
+    private RoleDao roleDao;
 
     @Autowired
     public RoleServiceImpl(RoleDao roleDao) {
