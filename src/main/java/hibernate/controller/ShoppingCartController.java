@@ -39,7 +39,7 @@ public class ShoppingCartController {
         String email = details.getUsername();
         shoppingCartService
                 .addSession(movieSessionService.get(movieSessionId),
-                        userService.findByEmail(email));
+                        userService.findByEmail(email).get());
     }
 
     @GetMapping("/by-user")
@@ -47,6 +47,6 @@ public class ShoppingCartController {
         UserDetails details = (UserDetails) authentication.getPrincipal();
         String email = details.getUsername();
         return shoppingCartMapper
-                .parseToDto(shoppingCartService.getByUser(userService.findByEmail(email)));
+                .parseToDto(shoppingCartService.getByUser(userService.findByEmail(email).get()));
     }
 }

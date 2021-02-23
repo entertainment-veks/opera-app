@@ -1,11 +1,13 @@
 package hibernate.model;
 
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +19,8 @@ public class User {
     @Column(unique = true, length = 30)
     private String email;
     private String password;
+    @ManyToMany
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -42,10 +46,12 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "id=" + id + ", email='" + email + '\''
-                + ", password='" + password + '\'' + '}';
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -58,11 +64,11 @@ public class User {
         }
         User user = (User) o;
         return Objects.equals(id, user.id) && Objects.equals(email, user.email)
-                && Objects.equals(password, user.password);
+                && Objects.equals(password, user.password) && Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password);
+        return Objects.hash(id, email, password, roles);
     }
 }

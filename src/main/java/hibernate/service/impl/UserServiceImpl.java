@@ -3,6 +3,7 @@ package hibernate.service.impl;
 import hibernate.dao.UserDao;
 import hibernate.model.User;
 import hibernate.service.UserService;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userDao.findByEmail(email).get();
+    public Optional<User> findByEmail(String email) {
+        return userDao.findByEmail(email);
     }
 
     @Override
