@@ -1,13 +1,12 @@
 package opera.app.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import opera.app.model.dto.OrderResponseDto;
 import opera.app.service.OrderService;
 import opera.app.service.ShoppingCartService;
 import opera.app.service.UserService;
 import opera.app.service.mapper.OrderMapper;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;

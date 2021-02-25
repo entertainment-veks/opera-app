@@ -58,7 +58,8 @@ public class Ticket {
             return false;
         }
         Ticket ticket = (Ticket) o;
-        return Objects.equals(id, ticket.id) && Objects.equals(performanceSession, ticket.performanceSession)
+        return Objects.equals(id, ticket.id)
+                && Objects.equals(performanceSession, ticket.performanceSession)
                 && Objects.equals(user, ticket.user);
     }
 

@@ -1,14 +1,14 @@
 package opera.app.controller;
 
+import jakarta.validation.Valid;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 import opera.app.model.PerformanceSession;
 import opera.app.model.dto.PerformanceSessionRequestDto;
 import opera.app.model.dto.PerformanceSessionResponseDto;
 import opera.app.service.PerformanceSessionService;
 import opera.app.service.mapper.PerformanceSessionMapper;
-import jakarta.validation.Valid;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,13 +36,15 @@ public class PerformanceSessionController {
 
     @PostMapping
     public void savePerformanceSession(@RequestBody @Valid
-                                         PerformanceSessionRequestDto performanceSessionRequestDto) {
-        PerformanceSession current = performanceSessionMapper.parseFromDto(performanceSessionRequestDto);
+                     PerformanceSessionRequestDto performanceSessionRequestDto) {
+        PerformanceSession current = performanceSessionMapper
+                .parseFromDto(performanceSessionRequestDto);
         performanceSessionService.add(current);
     }
 
     @GetMapping("/available")
-    public List<PerformanceSessionResponseDto> getAllPerformanceSessions(@RequestParam Long performanceId,
+    public List<PerformanceSessionResponseDto> getAllPerformanceSessions(@RequestParam
+             Long performanceId,
              @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return performanceSessionService.findAvailableSessions(performanceId, date).stream()
                 .map(performanceSessionMapper::parseToDto)
@@ -51,9 +53,9 @@ public class PerformanceSessionController {
 
     @PutMapping("/{id}")
     public void updatePerformanceSession(@PathVariable Long id,
-                                   @RequestBody @Valid
-                                           PerformanceSessionRequestDto performanceSessionRequestDto) {
-        PerformanceSession performanceSession = performanceSessionMapper.parseFromDto(performanceSessionRequestDto);
+            @RequestBody @Valid PerformanceSessionRequestDto performanceSessionRequestDto) {
+        PerformanceSession performanceSession = performanceSessionMapper
+                .parseFromDto(performanceSessionRequestDto);
         performanceSession.setId(id);
         performanceSessionService.update(performanceSession);
     }

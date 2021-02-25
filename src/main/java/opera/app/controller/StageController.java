@@ -1,14 +1,13 @@
 package opera.app.controller;
 
+import jakarta.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 import opera.app.model.Stage;
 import opera.app.model.dto.StageRequestDto;
 import opera.app.model.dto.StageResponseDto;
 import opera.app.service.StageService;
 import opera.app.service.mapper.StageMapper;
-import jakarta.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

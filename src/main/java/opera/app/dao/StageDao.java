@@ -1,7 +1,7 @@
 package opera.app.dao;
 
-import opera.app.model.Stage;
 import java.util.List;
+import opera.app.model.Stage;
 
 public interface StageDao {
     Stage add(Stage stage);

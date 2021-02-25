@@ -1,7 +1,7 @@
 package opera.app.dao;
 
-import opera.app.model.Performance;
 import java.util.List;
+import opera.app.model.Performance;
 
 public interface PerformanceDao {
     Performance add(Performance performance);

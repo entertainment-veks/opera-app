@@ -1,8 +1,8 @@
 package opera.app.controller;
 
+import jakarta.validation.Valid;
 import opera.app.model.dto.UserRequestDto;
 import opera.app.service.AuthenticationService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

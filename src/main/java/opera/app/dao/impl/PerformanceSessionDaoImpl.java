@@ -1,11 +1,11 @@
 package opera.app.dao.impl;
 
-import opera.app.dao.PerformanceSessionDao;
-import opera.app.exception.DataProcessingException;
-import opera.app.model.PerformanceSession;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import opera.app.dao.PerformanceSessionDao;
+import opera.app.exception.DataProcessingException;
+import opera.app.model.PerformanceSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

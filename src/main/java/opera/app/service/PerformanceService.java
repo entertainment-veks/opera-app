@@ -1,8 +1,7 @@
 package opera.app.service;
 
-import opera.app.model.Performance;
-
 import java.util.List;
+import opera.app.model.Performance;
 
 public interface PerformanceService {
     Performance add(Performance performance);

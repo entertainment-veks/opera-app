@@ -1,10 +1,9 @@
 package opera.app.service.impl;
 
+import java.util.List;
 import opera.app.dao.StageDao;
 import opera.app.model.Stage;
 import opera.app.service.StageService;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

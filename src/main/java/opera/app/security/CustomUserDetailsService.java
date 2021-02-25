@@ -2,9 +2,9 @@ package opera.app.security;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
+import java.util.stream.Collectors;
 import opera.app.model.User;
 import opera.app.service.UserService;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;

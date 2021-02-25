@@ -1,7 +1,7 @@
 package opera.app.service;
 
-import opera.app.model.User;
 import java.util.Optional;
+import opera.app.model.User;
 
 public interface UserService {
     User add(User user);

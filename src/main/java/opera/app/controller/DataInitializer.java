@@ -1,11 +1,10 @@
 package opera.app.controller;
 
+import java.util.Set;
 import opera.app.model.Role;
 import opera.app.model.User;
 import opera.app.service.RoleService;
 import opera.app.service.UserService;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,10 +1,9 @@
 package opera.app.dao.impl;
 
+import java.util.List;
 import opera.app.dao.StageDao;
 import opera.app.exception.DataProcessingException;
 import opera.app.model.Stage;
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -1,9 +1,9 @@
 package opera.app.service;
 
+import java.util.List;
 import opera.app.model.Order;
 import opera.app.model.ShoppingCart;
 import opera.app.model.User;
-import java.util.List;
 
 public interface OrderService {
     Order completeOrder(ShoppingCart shoppingCart);

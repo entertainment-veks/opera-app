@@ -1,9 +1,9 @@
 package opera.app.service.impl;
 
+import java.util.Optional;
 import opera.app.dao.UserDao;
 import opera.app.model.User;
 import opera.app.service.UserService;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

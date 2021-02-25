@@ -1,11 +1,10 @@
 package opera.app.dao.impl;
 
+import java.util.List;
+import javax.persistence.criteria.CriteriaQuery;
 import opera.app.dao.PerformanceDao;
 import opera.app.exception.DataProcessingException;
 import opera.app.model.Performance;
-import java.util.List;
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

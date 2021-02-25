@@ -1,9 +1,8 @@
 package opera.app.service;
 
-import opera.app.model.PerformanceSession;
-
 import java.time.LocalDate;
 import java.util.List;
+import opera.app.model.PerformanceSession;
 
 public interface PerformanceSessionService {
     List<PerformanceSession> findAvailableSessions(Long performanceId, LocalDate date);

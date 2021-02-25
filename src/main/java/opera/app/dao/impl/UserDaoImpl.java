@@ -1,10 +1,9 @@
 package opera.app.dao.impl;
 
+import java.util.Optional;
 import opera.app.dao.UserDao;
 import opera.app.exception.DataProcessingException;
 import opera.app.model.User;
-import java.util.Optional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

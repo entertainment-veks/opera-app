@@ -1,12 +1,11 @@
 package opera.app.service.impl;
 
+import java.util.Set;
 import opera.app.model.User;
 import opera.app.service.AuthenticationService;
 import opera.app.service.RoleService;
 import opera.app.service.ShoppingCartService;
 import opera.app.service.UserService;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
