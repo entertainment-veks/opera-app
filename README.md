@@ -3,10 +3,11 @@ Demo-app for internet shop to the opera on Java
 
 ### **Project Structure**
 * Controllers
-* Daos (and implementation)
-* Services (and implementation)
-* Mappers (and implementation)
-* Models (and dtos)
+* Daos (and implementations)
+* Services (and implementations)
+* Mappers (and implementations)
+* Models
+* Dtos
 * Config files
 * Custom exceptions
 * Validation annotations
@@ -31,7 +32,7 @@ Demo-app for internet shop to the opera on Java
 1. Download and install the JDK
 2. Download and install servlet container (for example Apache Tomcat)
 3. Download and install MySQL Server
-4. Setup new connection with
+4. Setup new connection in db.properties with
    * user: "your username"
    * password: "your password"
    * url: jdbc:mysql://"your host name":"your port"/"your name db"?serverTimezone=UTC
