@@ -18,9 +18,7 @@ Demo-app for internet shop to the opera on Java
 * Maven 3.1.1
 * Maven Checkstyle Plugin
 * Hibernate 5.4.21.Final
-* Hibernate Validator 7.0.1.Final
 * Javax Servlet 2.5
-* Spring Context 5.3.3
 * Spring Orm 5.3.3
 * Spring Webmvc 5.3.3
 * Spring Security 5.3.3
